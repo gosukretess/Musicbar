@@ -25,7 +25,10 @@ namespace Musicbar
 
         private void Move_Window(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
 
         private void Prev_Click(object sender, RoutedEventArgs e)
@@ -41,6 +44,11 @@ namespace Musicbar
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             keybd_event(VK_MEDIA_NEXT_TRACK, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+        }
+
+        private void ContextCloseApp_OnClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

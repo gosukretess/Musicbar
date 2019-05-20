@@ -3,22 +3,42 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Musicbar"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
         Title="MainWindow" Height="24" Width="106" MouseDown="Move_Window"
-        Topmost="True" Background="DarkSlateGray" 
-        xmlns:tb="http://www.hardcodet.net/taskbar">
+        Topmost="True" Background="#3a4d60" 
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:fa5="http://schemas.fontawesome.com/icons/">
 
     <StackPanel Orientation="Horizontal" Margin="2">
         <tb:TaskbarIcon x:Name="myNotifyIcon"
                         Visibility="Visible" />
 
-        <Canvas Width="10" Height="20" Margin="0,0,2,0" HorizontalAlignment="Left" Background="DimGray"/>
-        <Button x:Name="prev" Content="Prev" HorizontalAlignment="Left" Height="20" Width="20" Click="Prev_Click"/>
-        <Button x:Name="play" Content="Play" HorizontalAlignment="Left" Margin="5,0,5,0" Height="20" Width="40" Click="Play_Click"/>
-        <Button x:Name="next" Content="Next" HorizontalAlignment="Left" Height="20" Width="20" Click="Next_Click"/>
+        <Canvas Width="12" Height="20" Margin="0,0,4,0" HorizontalAlignment="Left" >
+            <fa5:FontAwesome Icon="Solid_Bars" VerticalAlignment="Center" Foreground="#d6d6d6" FontSize="13"/>
+            <Canvas.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Close" Click="ContextCloseApp_OnClick"/>
+                </ContextMenu>
+            </Canvas.ContextMenu>
+        </Canvas>
+        <Button x:Name="prev" HorizontalAlignment="Left" Height="20" Width="20" Click="Prev_Click" FontSize="11">
+            <Button.Content>
+                <fa5:FontAwesome Icon="Solid_StepBackward" />
+            </Button.Content>
+        </Button>
+        <Button x:Name="play" HorizontalAlignment="Left" Margin="5,0,5,0" Height="20" Width="36" Click="Play_Click" FontSize="11">
+            <StackPanel Orientation="Horizontal">
+                <fa5:FontAwesome Icon="Solid_Pause" Margin="0,0,2,0"/>
+                <fa5:FontAwesome Icon="Solid_Play" FontSize="10" Margin="0,1,0,0"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="next" HorizontalAlignment="Left" Height="20" Width="20" Click="Next_Click" FontSize="11">
+            <Button.Content>
+                <fa5:FontAwesome Icon="Solid_StepForward" />
+            </Button.Content>
+        </Button>
 
     </StackPanel>
 </Window>
