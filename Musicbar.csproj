@@ -66,6 +66,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\ButtonImageProperty.cs" />
     <Compile Include="Models\ControlAction.cs" />
     <Compile Include="Models\Theme.cs" />
     <Compile Include="Services\IThemesRepository.cs" />
