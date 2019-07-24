@@ -1,54 +1,40 @@
 ﻿<Window x:Class="Musicbar.Views.MusicbarView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
-        Title="MainWindow" Height="24" Width="106" MouseDown="Move_Window"
+        Title="MainWindow" Height="24" Width="96" MouseDown="Window_MoveEvent"
         Topmost="True" Background="{Binding themesRepository.ActiveTheme.BackgroundColor}" 
         xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:models="clr-namespace:Musicbar.Models"
         xmlns:exts="clr-namespace:Musicbar.Extensions"
-        DataContext="{Binding Musicbar, Source={StaticResource ViewModelLocator}}">
-
+        DataContext="{Binding Musicbar, Source={StaticResource ViewModelLocator}}"
+        PreviewMouseWheel="Window_ScrollEvent">
+    <Window.Resources>
+        <ContextMenu x:Key="contextMenu">
+            <MenuItem Header="Settings" Command="{Binding GoToSettings}"/>
+            <Separator />
+            <MenuItem Header="Close" Command="{Binding CloseApplication}"/>
+        </ContextMenu>
+    </Window.Resources>
     <StackPanel Orientation="Horizontal" Margin="2">
-        <tb:TaskbarIcon Visibility="Visible" />
+        <tb:TaskbarIcon IconSource="../Resources/Icons/taskbar.ico" ToolTipText="Musicbar" ContextMenu="{StaticResource contextMenu}" />
 
-        <Canvas Width="12" Height="20" Margin="0,0,4,0" HorizontalAlignment="Left" >
-            <TextBlock Text="=" Foreground="AliceBlue"></TextBlock>
-            <Canvas.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Close" Click="ContextCloseApp_OnClick"/>
-                </ContextMenu>
-            </Canvas.ContextMenu>
-        </Canvas>
-        <Button HorizontalAlignment="Left" Height="20" Width="20"
+
+        <TextBlock Text="=" Foreground="White"  Width="12" Height="20" 
+                   Margin="0,0,4,0" HorizontalAlignment="Left" ContextMenu="{StaticResource contextMenu}"/>
+
+        <exts:ImageButton
                 Command="{Binding ControlPlayback}" CommandParameter="{x:Static models:ControlAction.Prev}"
-                Template="{StaticResource PlaybackButton}" exts:ButtonImageProperty.ImagePath="{Binding themesRepository.ActiveTheme.Prev}">
-        </Button>
-        <Button HorizontalAlignment="Left" Margin="5,0,5,0" Height="20" Width="36" FontSize="11"
-                Command="{Binding ControlPlayback}" CommandParameter="{x:Static models:ControlAction.Play}">
-            <Button.Template>
-                <ControlTemplate>
-                    <Border HorizontalAlignment="Center" VerticalAlignment="Center" >
-                        <Image Source="{Binding themesRepository.ActiveTheme.Play}"></Image>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button HorizontalAlignment="Left" Height="20" Width="20" FontSize="11"
-                Command="{Binding ControlPlayback}" CommandParameter="{x:Static models:ControlAction.Next}">
-            <Button.Template>
-                <ControlTemplate>
-                    <Border HorizontalAlignment="Center" VerticalAlignment="Center" >
-                        <Image Source="{Binding themesRepository.ActiveTheme.Next}"></Image>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
-
+                ImageSource="{Binding themesRepository.ActiveTheme.Prev}">
+        </exts:ImageButton>
+        <exts:ImageButton Margin="8,0,8,0" 
+                          Command="{Binding ControlPlayback}" CommandParameter="{x:Static models:ControlAction.Play}"
+                          ImageSource="{Binding themesRepository.ActiveTheme.Play}">
+        </exts:ImageButton>
+        <exts:ImageButton 
+                          Command="{Binding ControlPlayback}" CommandParameter="{x:Static models:ControlAction.Next}"
+                          ImageSource="{Binding themesRepository.ActiveTheme.Next}">
+        </exts:ImageButton>
     </StackPanel>
 </Window>

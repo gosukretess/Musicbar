@@ -6,21 +6,28 @@
              StartupUri="Views/MusicbarView.xaml">
     <Application.Resources>
         <services:ViewModelLocator x:Key="ViewModelLocator" />
-        <ControlTemplate x:Key="PlaybackButton" TargetType="Button">
-            <Border HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <Image x:Name="playbackButton" Source="{Binding ButtonImageProperty.ImagePath, RelativeSource={RelativeSource TemplatedParent}}" />
-            </Border>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="playbackButton" Property="Opacity" Value="0.8"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter TargetName="playbackButton" Property="Opacity" Value="1"/>
-                </Trigger>
-                <Trigger Property="Button.IsPressed" Value="True">
-                    <Setter TargetName="playbackButton" Property="Opacity" Value="0.5" />
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
+
+        <Style x:Key="{x:Type exts:ImageButton}" TargetType="{x:Type exts:ImageButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type exts:ImageButton}">
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20">
+                        <Image x:Name="playbackButton" Source="{TemplateBinding ImageSource}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="playbackButton" Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="playbackButton" Property="Opacity" Value="1"/>
+                            </Trigger>
+                            <Trigger Property="Button.IsPressed" Value="True">
+                                <Setter TargetName="playbackButton" Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

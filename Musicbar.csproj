@@ -37,9 +37,13 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>taskbar.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,6 +63,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\PlaybackControlUtil.cs" />
+    <Compile Include="Utils\VolumeControlUtil.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MusicbarView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,17 +77,21 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ButtonImageProperty.cs" />
+    <Compile Include="Extensions\ImageButton.cs" />
     <Compile Include="Models\ControlAction.cs" />
     <Compile Include="Models\Theme.cs" />
     <Compile Include="Services\IThemesRepository.cs" />
     <Compile Include="Services\ThemesRepository.cs" />
     <Compile Include="Services\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MusicbarViewModel.cs" />
-    <Compile Include="Services\PlaybackControlUtil.cs" />
     <Compile Include="Views\MusicbarView.xaml.cs">
       <DependentUpon>MusicbarView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -101,6 +115,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="README.md" />
     <None Include="Resources\Themes\bluesky\theme.ini" />
   </ItemGroup>
   <ItemGroup>
@@ -118,15 +133,33 @@
     <PackageReference Include="ini-parser">
       <Version>2.5.2</Version>
     </PackageReference>
+    <PackageReference Include="InputSimulator">
+      <Version>1.0.4</Version>
+    </PackageReference>
     <PackageReference Include="MvvmLight">
       <Version>5.4.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="NHotkey">
+      <Version>1.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="NHotkey.Wpf">
+      <Version>1.2.1</Version>
     </PackageReference>
     <PackageReference Include="System.Console">
       <Version>4.3.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\taskbar.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="taskbar.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>XCOPY "$(SolutionDir)Resources\Themes" "$(TargetDir)\Themes" /s /i /y</PostBuildEvent>
+    <PostBuildEvent>XCOPY "$(SolutionDir)Resources\Themes" "$(TargetDir)\Themes" /s /i /y
+XCOPY "$(SolutionDir)Resources\Icons" "$(TargetDir)\Icons" /s /i /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
