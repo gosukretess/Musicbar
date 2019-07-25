@@ -26,6 +26,7 @@ namespace Musicbar.Services
                 var data = parser.ReadFile(Path.Combine(singleThemePath,"theme.ini"));
                 themes.Add(themeName, new Theme
                 {
+                    Name = themeName,
                     Path = singleThemePath,
                     BackgroundColor = data["Theme"]["BackgroundColor"]
                 });

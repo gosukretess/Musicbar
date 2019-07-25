@@ -1,5 +1,4 @@
 ﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Musicbar.ViewModels;
 
@@ -18,12 +17,14 @@ namespace Musicbar.Services
             //else
             //{
                 SimpleIoc.Default.Register<IThemesRepository, ThemesRepository>();
-                //}
+            //}
 
             SimpleIoc.Default.Register<MusicbarViewModel>();
+            SimpleIoc.Default.Register<SettingsViewModel>();
         }
     
 
         public MusicbarViewModel Musicbar => new MusicbarViewModel();
+        public SettingsViewModel Settings => new SettingsViewModel();
     }
 }

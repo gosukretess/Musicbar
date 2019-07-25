@@ -1,10 +1,8 @@
-﻿using System.Net.Mime;
-using System.Windows.Media.Imaging;
-
-namespace Musicbar.Models
+﻿namespace Musicbar.Models
 {
     public class Theme
     {
+        public string Name { get; set; }
         public string Path { get; set; }
         public string BackgroundColor { get; set; }
 

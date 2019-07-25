@@ -33,7 +33,7 @@ namespace Musicbar.ViewModels
         private void PlayPause(object sender, HotkeyEventArgs e)
         {
             InputSimulator sim = new InputSimulator();
-
+            
             sim.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
             sim.Keyboard.KeyUp(VirtualKeyCode.F4);
             new PlaybackControlUtil().ControlPlayback(ControlAction.Play);
