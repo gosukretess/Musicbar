@@ -38,19 +38,13 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>taskbar.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icons\taskbar.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -63,6 +57,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Hotkey.cs" />
+    <Compile Include="Resources\ActiveConfiguration.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ActiveConfiguration.settings</DependentUpon>
+    </Compile>
     <Compile Include="Utils\PlaybackControlUtil.cs" />
     <Compile Include="Utils\VolumeControlUtil.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
@@ -116,6 +116,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="README.md" />
+    <None Include="Resources\ActiveConfiguration.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ActiveConfiguration.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\Themes\bluesky\theme.ini" />
   </ItemGroup>
   <ItemGroup>
@@ -136,7 +140,7 @@
     <PackageReference Include="InputSimulator">
       <Version>1.0.4</Version>
     </PackageReference>
-    <PackageReference Include="MvvmLight">
+    <PackageReference Include="MvvmLightLibs">
       <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="NHotkey">
@@ -145,17 +149,11 @@
     <PackageReference Include="NHotkey.Wpf">
       <Version>1.2.1</Version>
     </PackageReference>
-    <PackageReference Include="System.Console">
-      <Version>4.3.1</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\taskbar.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="taskbar.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Musicbar.Views.SettingsView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:Musicbar.Controls"
         DataContext="{Binding Settings, Source={StaticResource ViewModelLocator}}"
         Title="Musicbar Settings" Height="450" Width="400">
     <StackPanel Margin="4">
@@ -25,7 +26,7 @@
             <Label Grid.Column="0" Grid.Row="3" Content="Play/Pause"></Label>
             <Button Grid.Column="1" Grid.Row="3" Content="{Binding PlayPauseButtonValue}" Command="{Binding PlayPauseButtonCommand}"/>
             <Label Grid.Column="0" Grid.Row="4" Content="Prev"></Label>
-            <Button Grid.Column="1" Grid.Row="4" ></Button>
+            <controls:HotkeyEditorControl Grid.Column="1" Grid.Row="4" ></controls:HotkeyEditorControl>
             <Label Grid.Column="0" Grid.Row="5" Content="Next"></Label>
             <Button Grid.Column="1" Grid.Row="5" ></Button>
         </Grid>

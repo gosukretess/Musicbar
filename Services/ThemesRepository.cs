@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using IniParser;
 using Musicbar.Models;
+using Musicbar.Resources;
 
 namespace Musicbar.Services
 {
@@ -32,15 +33,17 @@ namespace Musicbar.Services
                 });
             }
 
-            // TODO: Add reading from settings
-            ActiveTheme = themes.First().Value;
+            ActiveTheme = GetThemeByName(ActiveConfiguration.Default.Theme);
+        }
+
+        private Theme GetThemeByName(string name)
+        {
+            return themes.FirstOrDefault(t => t.Key == name).Value;
         }
 
         public IEnumerable<string> GetThemesList()
         {
             return themes.Keys;
         }
-
-        
     }
 }
